@@ -53,10 +53,12 @@ def fetch_spa_date():
         )
 
         import time
-        time.sleep(3)
+        time.sleep(5)
 
         page_text = driver.find_element(By.TAG_NAME, "body").text
         page_html = driver.page_source
+
+        print(f"Page text (first 500 chars): {page_text[:500]}")
 
         weekdays_pattern = '|'.join(WEEKDAYS_AR)
         for month_ar, month_num in MONTH_AR_TO_NUM.items():
