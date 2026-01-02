@@ -31,6 +31,8 @@ jobs:
 
     - name: Fetch Hijri date from SPA
       run: python scraper.py
+      env:
+        TZ: Asia/Riyadh
 
     - name: Commit and push
       run: |

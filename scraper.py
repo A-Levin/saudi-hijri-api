@@ -42,10 +42,22 @@ def fetch_spa_date():
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--disable-gpu')
     options.add_argument('--window-size=1920,1080')
+    options.add_argument('--lang=ar-SA')
+    options.add_argument('--accept-lang=ar-SA,ar')
+    options.add_experimental_option('prefs', {
+        'intl.accept_languages': 'ar-SA,ar',
+        'profile.default_content_setting_values.geolocation': 1,
+    })
 
     driver = None
     try:
         driver = webdriver.Chrome(options=options)
+        driver.execute_cdp_cmd('Emulation.setTimezoneOverride', {'timezoneId': 'Asia/Riyadh'})
+        driver.execute_cdp_cmd('Emulation.setGeolocationOverride', {
+            'latitude': 24.7136,
+            'longitude': 46.6753,
+            'accuracy': 100
+        })
         driver.get('https://www.spa.gov.sa/')
 
         WebDriverWait(driver, 15).until(
