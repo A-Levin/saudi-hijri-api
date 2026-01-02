@@ -5,7 +5,7 @@ Free Hijri date API based on Saudi Arabia's official calendar from [SPA.gov.sa](
 ## Usage
 
 ```bash
-curl https://YOUR_USERNAME.github.io/saudi-hijri-api/api/hijri.json
+curl https://A-Levin.github.io/saudi-hijri-api/api/hijri.json
 ```
 
 ## Response
