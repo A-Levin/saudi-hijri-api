@@ -80,7 +80,9 @@ def main():
         hijri['gregorian'] = datetime.now().strftime('%Y-%m-%d')
         hijri['updated_at'] = datetime.now().isoformat()
 
-        if data['current'] != hijri.get('day') or not data['current']:
+        current = data.get('current')
+        is_new_day = not current or current.get('day') != hijri['day'] or current.get('month') != hijri['month']
+        if is_new_day:
             data['current'] = hijri
             data['history'].append(hijri)
             data['history'] = data['history'][-365:]
