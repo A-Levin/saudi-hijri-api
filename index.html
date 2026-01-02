@@ -103,7 +103,7 @@
 
     <h2>API Endpoint</h2>
     <div class="endpoint">
-      <code id="api-url">https://a-levin.github.io/saudi-hijri-api/hijri.json</code>
+      <code id="api-url">https://a-levin.github.io/saudi-hijri-api/api/hijri.json</code>
       <button class="copy-btn" onclick="copyUrl()">Copy</button>
     </div>
 
@@ -114,7 +114,7 @@
       </div>
       <div class="feature">
         <h3>🔄 Auto Updated</h3>
-        <p>Refreshed every 6 hours via GitHub Actions</p>
+        <p>Refreshed daily at midnight (Riyadh time)</p>
       </div>
       <div class="feature">
         <h3>🆓 100% Free</h3>
@@ -129,13 +129,13 @@
     <h2>Response Example</h2>
     <pre><code>{
   "current": {
-    "day": 13,
+    "day": 14,
     "month": 7,
     "year": 1447,
     "month_name_ar": "رجب",
     "month_name_en": "Rajab",
-    "gregorian": "2026-01-02",
-    "updated_at": "2026-01-02T13:39:16"
+    "gregorian": "2026-01-03",
+    "updated_at": "2026-01-03T01:25:00"
   },
   "history": [...],
   "source": "spa.gov.sa"
@@ -143,17 +143,17 @@
 
     <h2>Usage</h2>
     <pre><code>// JavaScript
-fetch('https://a-levin.github.io/saudi-hijri-api/hijri.json')
+fetch('https://a-levin.github.io/saudi-hijri-api/api/hijri.json')
   .then(r => r.json())
   .then(data => console.log(data.current));
 
 # Python
 import requests
-data = requests.get('https://a-levin.github.io/saudi-hijri-api/hijri.json').json()
+data = requests.get('https://a-levin.github.io/saudi-hijri-api/api/hijri.json').json()
 print(data['current'])
 
 # Bash
-curl -s https://a-levin.github.io/saudi-hijri-api/hijri.json | jq .current</code></pre>
+curl -s https://a-levin.github.io/saudi-hijri-api/api/hijri.json | jq .current</code></pre>
 
     <p class="source">
       Source: <a href="https://github.com/A-Levin/saudi-hijri-api">GitHub</a> ·
@@ -162,7 +162,7 @@ curl -s https://a-levin.github.io/saudi-hijri-api/hijri.json | jq .current</code
   </div>
 
   <script>
-    fetch('hijri.json')
+    fetch('api/hijri.json')
       .then(r => r.json())
       .then(data => {
         const c = data.current;
