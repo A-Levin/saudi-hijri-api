@@ -18,11 +18,38 @@ HIJRI_MONTHS_EN = {
 }
 
 
+ARABIC_TO_INT = {'٠': 0, '١': 1, '٢': 2, '٣': 3, '٤': 4, '٥': 5, '٦': 6, '٧': 7, '٨': 8, '٩': 9}
+MONTH_AR_TO_NUM = {v: k for k, v in HIJRI_MONTHS_AR.items()}
+
+
+def arabic_num_to_int(s):
+    result = 0
+    for char in s:
+        if char in ARABIC_TO_INT:
+            result = result * 10 + ARABIC_TO_INT[char]
+    return result
+
+
 def fetch_spa_date():
     headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36'}
     try:
         resp = requests.get('https://www.spa.gov.sa/', headers=headers, timeout=30)
         resp.raise_for_status()
+
+        for month_ar, month_num in MONTH_AR_TO_NUM.items():
+            pattern = rf'([٠-٩]+)\s*{month_ar}\s*([٠-٩]+)'
+            match = re.search(pattern, resp.text)
+            if match and arabic_num_to_int(match.group(2)) > 1440:
+                day = arabic_num_to_int(match.group(1))
+                year = arabic_num_to_int(match.group(2))
+                return {
+                    'day': day,
+                    'month': month_num,
+                    'year': year,
+                    'month_name_ar': month_ar,
+                    'month_name_en': HIJRI_MONTHS_EN[month_num]
+                }
+
         match = re.search(r'"date_hijri":"(\d{4})-(\d{2})-(\d{2})"', resp.text)
         if match:
             year, month, day = int(match.group(1)), int(match.group(2)), int(match.group(3))
