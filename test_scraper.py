@@ -4,7 +4,7 @@ import json
 import tempfile
 from pathlib import Path
 from unittest.mock import Mock, patch, MagicMock
-from scraper import arabic_num_to_int, MONTH_AR_TO_NUM, HIJRI_MONTHS_AR, HIJRI_MONTHS_EN
+from scraper import arabic_num_to_int, MONTH_AR_TO_NUM, HIJRI_MONTHS_AR, HIJRI_MONTHS_EN, WEEKDAYS_AR
 import re
 
 
@@ -23,6 +23,21 @@ class TestArabicNumToInt:
 
 
 class TestDateParsing:
+    def test_parse_header_14_rajab_1447(self):
+        text = "السبت ١٤ رجب ١٤٤٧ - ٣ يناير ٢٠٢٦"
+        weekdays_pattern = '|'.join(WEEKDAYS_AR)
+        for month_ar, month_num in MONTH_AR_TO_NUM.items():
+            header_pattern = rf'(?:{weekdays_pattern})\s*([٠-٩]+)\s*{month_ar}\s*([٠-٩]+)'
+            match = re.search(header_pattern, text)
+            if match and arabic_num_to_int(match.group(2)) > 1440:
+                day = arabic_num_to_int(match.group(1))
+                year = arabic_num_to_int(match.group(2))
+                assert day == 14
+                assert month_num == 7
+                assert year == 1447
+                return
+        pytest.fail("Header date not found")
+
     def test_parse_14_rajab_1447(self):
         text = "السبت ١٤ رجب ١٤٤٧ - ٣ يناير ٢٠٢٦"
         for month_ar, month_num in MONTH_AR_TO_NUM.items():

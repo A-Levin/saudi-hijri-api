@@ -24,6 +24,7 @@ HIJRI_MONTHS_EN = {
 
 ARABIC_TO_INT = {'٠': 0, '١': 1, '٢': 2, '٣': 3, '٤': 4, '٥': 5, '٦': 6, '٧': 7, '٨': 8, '٩': 9}
 MONTH_AR_TO_NUM = {v: k for k, v in HIJRI_MONTHS_AR.items()}
+WEEKDAYS_AR = ['السبت', 'الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة']
 
 
 def arabic_num_to_int(s):
@@ -56,6 +57,22 @@ def fetch_spa_date():
 
         page_text = driver.find_element(By.TAG_NAME, "body").text
         page_html = driver.page_source
+
+        weekdays_pattern = '|'.join(WEEKDAYS_AR)
+        for month_ar, month_num in MONTH_AR_TO_NUM.items():
+            header_pattern = rf'(?:{weekdays_pattern})\s*([٠-٩]+)\s*{month_ar}\s*([٠-٩]+)'
+            match = re.search(header_pattern, page_text)
+            if match and arabic_num_to_int(match.group(2)) > 1440:
+                day = arabic_num_to_int(match.group(1))
+                year = arabic_num_to_int(match.group(2))
+                print(f"Found header date: {day} {month_ar} {year}")
+                return {
+                    'day': day,
+                    'month': month_num,
+                    'year': year,
+                    'month_name_ar': month_ar,
+                    'month_name_en': HIJRI_MONTHS_EN[month_num]
+                }
 
         for month_ar, month_num in MONTH_AR_TO_NUM.items():
             pattern = rf'([٠-٩]+)\s*{month_ar}\s*([٠-٩]+)'
