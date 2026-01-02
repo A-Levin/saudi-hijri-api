@@ -1,0 +1,38 @@
+name: Update Hijri Date
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # каждые 6 часов
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: pip install requests
+
+    - name: Fetch Hijri date from SPA
+      run: python scraper.py
+
+    - name: Commit and push
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add -A
+        if ! git diff --staged --quiet; then
+          git commit -m "Update hijri date [skip ci]"
+          git push
+        fi
