@@ -2,7 +2,7 @@ name: Update Hijri Date
 
 on:
   schedule:
-    - cron: '0 15 * * *'  # ~18:00 по Мекке (магриб+30мин)
+    - cron: '0 15 * * *'
   workflow_dispatch:
   push:
     branches: [main]
@@ -21,8 +21,13 @@ jobs:
       with:
         python-version: '3.11'
 
+    - name: Install Chrome
+      uses: browser-actions/setup-chrome@v1
+      with:
+        chrome-version: stable
+
     - name: Install dependencies
-      run: pip install requests
+      run: pip install selenium
 
     - name: Fetch Hijri date from SPA
       run: python scraper.py

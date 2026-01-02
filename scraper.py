@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
 import re
 import json
-import requests
 from datetime import datetime
 from pathlib import Path
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 HIJRI_MONTHS_AR = {
     1: 'محرم', 2: 'صفر', 3: 'ربيع الأول', 4: 'ربيع الآخر',
@@ -16,7 +21,6 @@ HIJRI_MONTHS_EN = {
     5: 'Jumada al-Ula', 6: 'Jumada al-Thani', 7: 'Rajab', 8: 'Shaban',
     9: 'Ramadan', 10: 'Shawwal', 11: 'Dhul-Qadah', 12: 'Dhul-Hijjah'
 }
-
 
 ARABIC_TO_INT = {'٠': 0, '١': 1, '٢': 2, '٣': 3, '٤': 4, '٥': 5, '٦': 6, '٧': 7, '٨': 8, '٩': 9}
 MONTH_AR_TO_NUM = {v: k for k, v in HIJRI_MONTHS_AR.items()}
@@ -31,17 +35,35 @@ def arabic_num_to_int(s):
 
 
 def fetch_spa_date():
-    headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36'}
+    options = Options()
+    options.add_argument('--headless')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--disable-gpu')
+    options.add_argument('--window-size=1920,1080')
+
+    driver = None
     try:
-        resp = requests.get('https://www.spa.gov.sa/', headers=headers, timeout=30)
-        resp.raise_for_status()
+        driver = webdriver.Chrome(options=options)
+        driver.get('https://www.spa.gov.sa/')
+
+        WebDriverWait(driver, 15).until(
+            EC.presence_of_element_located((By.TAG_NAME, "body"))
+        )
+
+        import time
+        time.sleep(3)
+
+        page_text = driver.find_element(By.TAG_NAME, "body").text
+        page_html = driver.page_source
 
         for month_ar, month_num in MONTH_AR_TO_NUM.items():
             pattern = rf'([٠-٩]+)\s*{month_ar}\s*([٠-٩]+)'
-            match = re.search(pattern, resp.text)
+            match = re.search(pattern, page_text)
             if match and arabic_num_to_int(match.group(2)) > 1440:
                 day = arabic_num_to_int(match.group(1))
                 year = arabic_num_to_int(match.group(2))
+                print(f"Found in rendered text: {day} {month_ar} {year}")
                 return {
                     'day': day,
                     'month': month_num,
@@ -50,9 +72,10 @@ def fetch_spa_date():
                     'month_name_en': HIJRI_MONTHS_EN[month_num]
                 }
 
-        match = re.search(r'"date_hijri":"(\d{4})-(\d{2})-(\d{2})"', resp.text)
+        match = re.search(r'"date_hijri":"(\d{4})-(\d{2})-(\d{2})"', page_html)
         if match:
             year, month, day = int(match.group(1)), int(match.group(2)), int(match.group(3))
+            print(f"Found in JSON: {day}/{month}/{year}")
             return {
                 'day': day,
                 'month': month,
@@ -60,8 +83,12 @@ def fetch_spa_date():
                 'month_name_ar': HIJRI_MONTHS_AR[month],
                 'month_name_en': HIJRI_MONTHS_EN[month]
             }
+
     except Exception as e:
         print(f"Error fetching SPA: {e}")
+    finally:
+        if driver:
+            driver.quit()
     return None
 
 
