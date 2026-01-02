@@ -2,7 +2,7 @@ name: Update Hijri Date
 
 on:
   schedule:
-    - cron: '0 */6 * * *'  # каждые 6 часов
+    - cron: '0 9 * * *'  # 12:00 по Мекке (UTC+3)
   workflow_dispatch:
   push:
     branches: [main]
