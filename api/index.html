@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saudi Hijri API</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #fff;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+    .container { max-width: 800px; margin: 0 auto; }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(90deg, #00d4aa, #7b68ee);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle { color: #888; margin-bottom: 2rem; }
+    .date-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .hijri-date {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #00d4aa;
+      direction: rtl;
+    }
+    .gregorian { color: #888; margin-top: 0.5rem; }
+    .endpoint {
+      background: #0d1117;
+      border-radius: 8px;
+      padding: 1rem;
+      font-family: monospace;
+      margin: 1rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid #30363d;
+    }
+    .endpoint code { color: #58a6ff; }
+    .copy-btn {
+      background: #238636;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .copy-btn:hover { background: #2ea043; }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    .feature {
+      background: rgba(255,255,255,0.03);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .feature h3 { color: #00d4aa; margin-bottom: 0.5rem; }
+    pre {
+      background: #0d1117;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      border: 1px solid #30363d;
+    }
+    code { color: #c9d1d9; }
+    .source { color: #888; font-size: 0.9rem; margin-top: 2rem; }
+    a { color: #58a6ff; }
+    .badge {
+      display: inline-block;
+      background: #238636;
+      color: #fff;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      margin-left: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Saudi Hijri API <span class="badge">Free</span></h1>
+    <p class="subtitle">Official Hijri date from Saudi Press Agency (spa.gov.sa)</p>
+
+    <div class="date-card">
+      <div class="hijri-date" id="hijri">Loading...</div>
+      <div class="gregorian" id="gregorian"></div>
+    </div>
+
+    <h2>API Endpoint</h2>
+    <div class="endpoint">
+      <code id="api-url">https://a-levin.github.io/saudi-hijri-api/hijri.json</code>
+      <button class="copy-btn" onclick="copyUrl()">Copy</button>
+    </div>
+
+    <div class="features">
+      <div class="feature">
+        <h3>🕌 Official Source</h3>
+        <p>Data from spa.gov.sa — Saudi Arabia's official press agency</p>
+      </div>
+      <div class="feature">
+        <h3>🔄 Auto Updated</h3>
+        <p>Refreshed every 6 hours via GitHub Actions</p>
+      </div>
+      <div class="feature">
+        <h3>🆓 100% Free</h3>
+        <p>No API key, no limits, no registration</p>
+      </div>
+      <div class="feature">
+        <h3>📖 Open Source</h3>
+        <p>MIT License — use it anywhere</p>
+      </div>
+    </div>
+
+    <h2>Response Example</h2>
+    <pre><code>{
+  "current": {
+    "day": 13,
+    "month": 7,
+    "year": 1447,
+    "month_name_ar": "رجب",
+    "month_name_en": "Rajab",
+    "gregorian": "2026-01-02",
+    "updated_at": "2026-01-02T13:39:16"
+  },
+  "history": [...],
+  "source": "spa.gov.sa"
+}</code></pre>
+
+    <h2>Usage</h2>
+    <pre><code>// JavaScript
+fetch('https://a-levin.github.io/saudi-hijri-api/hijri.json')
+  .then(r => r.json())
+  .then(data => console.log(data.current));
+
+# Python
+import requests
+data = requests.get('https://a-levin.github.io/saudi-hijri-api/hijri.json').json()
+print(data['current'])
+
+# Bash
+curl -s https://a-levin.github.io/saudi-hijri-api/hijri.json | jq .current</code></pre>
+
+    <p class="source">
+      Source: <a href="https://github.com/A-Levin/saudi-hijri-api">GitHub</a> ·
+      Data: <a href="https://spa.gov.sa">spa.gov.sa</a>
+    </p>
+  </div>
+
+  <script>
+    fetch('hijri.json')
+      .then(r => r.json())
+      .then(data => {
+        const c = data.current;
+        document.getElementById('hijri').textContent =
+          `${c.day} ${c.month_name_ar} ${c.year}`;
+        document.getElementById('gregorian').textContent =
+          `${c.day} ${c.month_name_en} ${c.year} AH · ${c.gregorian}`;
+      });
+
+    function copyUrl() {
+      navigator.clipboard.writeText(document.getElementById('api-url').textContent);
+      document.querySelector('.copy-btn').textContent = 'Copied!';
+      setTimeout(() => document.querySelector('.copy-btn').textContent = 'Copy', 2000);
+    }
+  </script>
+</body>
+</html>
