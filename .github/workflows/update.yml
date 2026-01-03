@@ -4,8 +4,6 @@ on:
   schedule:
     - cron: '1 21 * * *'
   workflow_dispatch:
-  push:
-    branches: [main]
 
 jobs:
   update:
@@ -40,6 +38,6 @@ jobs:
         git config --local user.name "github-actions[bot]"
         git add -A
         if ! git diff --staged --quiet; then
-          git commit -m "Update hijri date [skip ci]"
+          git commit -m "Update hijri date"
           git push
         fi
