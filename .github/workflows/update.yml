@@ -2,7 +2,7 @@ name: Update Hijri Date
 
 on:
   schedule:
-    - cron: '0 22 * * *'
+    - cron: '1 21 * * *'
   workflow_dispatch:
   push:
     branches: [main]
