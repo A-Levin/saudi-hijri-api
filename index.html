@@ -89,6 +89,80 @@
       font-size: 0.8rem;
       margin-left: 0.5rem;
     }
+    .donate-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00d4aa, #7b68ee);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(0,212,170,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+      z-index: 1000;
+    }
+    .donate-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 25px rgba(0,212,170,0.5);
+    }
+    .donate-btn svg { width: 28px; height: 28px; fill: #fff; }
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 1001;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal {
+      background: #1a1a2e;
+      border-radius: 16px;
+      padding: 2rem;
+      max-width: 400px;
+      width: 90%;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .modal h2 { color: #00d4aa; margin-bottom: 1.5rem; text-align: center; }
+    .wallet {
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .wallet-label { color: #888; font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .wallet-address {
+      font-family: monospace;
+      font-size: 0.85rem;
+      word-break: break-all;
+      color: #fff;
+      background: #0d1117;
+      padding: 0.75rem;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 1px solid #30363d;
+      transition: border-color 0.2s;
+    }
+    .wallet-address:hover { border-color: #00d4aa; }
+    .wallet-address.copied { border-color: #238636; }
+    .close-modal {
+      display: block;
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 1rem;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      cursor: pointer;
+    }
+    .close-modal:hover { background: rgba(255,255,255,0.15); }
   </style>
 </head>
 <body>
@@ -161,6 +235,25 @@ curl -s https://a-levin.github.io/saudi-hijri-api/api/hijri.json | jq .current</
     </p>
   </div>
 
+  <button class="donate-btn" onclick="openDonate()">
+    <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+  </button>
+
+  <div class="modal-overlay" id="donateModal" onclick="closeDonate(event)">
+    <div class="modal" onclick="event.stopPropagation()">
+      <h2>Support this project</h2>
+      <div class="wallet">
+        <div class="wallet-label">USDT (TRC20)</div>
+        <div class="wallet-address" onclick="copyWallet(this)">TALL8frEv9r9nfGS4hneTGedXKNutXkniM</div>
+      </div>
+      <div class="wallet">
+        <div class="wallet-label">USDT (TON)</div>
+        <div class="wallet-address" onclick="copyWallet(this)">UQBhm_5jAp3iOAOh3MvWJbouQH4lTd6nxWkOw7q1742f0Lik</div>
+      </div>
+      <button class="close-modal" onclick="closeDonate()">Close</button>
+    </div>
+  </div>
+
   <script>
     fetch('api/hijri.json')
       .then(r => r.json())
@@ -176,6 +269,22 @@ curl -s https://a-levin.github.io/saudi-hijri-api/api/hijri.json | jq .current</
       navigator.clipboard.writeText(document.getElementById('api-url').textContent);
       document.querySelector('.copy-btn').textContent = 'Copied!';
       setTimeout(() => document.querySelector('.copy-btn').textContent = 'Copy', 2000);
+    }
+
+    function openDonate() {
+      document.getElementById('donateModal').classList.add('active');
+    }
+
+    function closeDonate(e) {
+      if (!e || e.target === e.currentTarget) {
+        document.getElementById('donateModal').classList.remove('active');
+      }
+    }
+
+    function copyWallet(el) {
+      navigator.clipboard.writeText(el.textContent);
+      el.classList.add('copied');
+      setTimeout(() => el.classList.remove('copied'), 2000);
     }
   </script>
 </body>
