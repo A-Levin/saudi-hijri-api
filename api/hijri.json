@@ -1,12 +1,12 @@
 {
   "current": {
-    "day": 21,
+    "day": 22,
     "month": 7,
     "year": 1447,
     "month_name_ar": "رجب",
     "month_name_en": "Rajab",
-    "gregorian": "2026-01-10",
-    "updated_at": "2026-01-10T00:29:43.503053"
+    "gregorian": "2026-01-11",
+    "updated_at": "2026-01-11T00:26:49.497595"
   },
   "history": [
     {
@@ -71,6 +71,15 @@
       "month_name_en": "Rajab",
       "gregorian": "2026-01-10",
       "updated_at": "2026-01-10T00:29:43.503053"
+    },
+    {
+      "day": 22,
+      "month": 7,
+      "year": 1447,
+      "month_name_ar": "رجب",
+      "month_name_en": "Rajab",
+      "gregorian": "2026-01-11",
+      "updated_at": "2026-01-11T00:26:49.497595"
     }
   ],
   "source": "spa.gov.sa"
