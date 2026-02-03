@@ -1,12 +1,12 @@
 {
   "current": {
-    "day": 14,
+    "day": 16,
     "month": 8,
     "year": 1447,
     "month_name_ar": "شعبان",
     "month_name_en": "Shaban",
-    "gregorian": "2026-02-02",
-    "updated_at": "2026-02-02T00:33:11.433293"
+    "gregorian": "2026-02-04",
+    "updated_at": "2026-02-04T00:45:00.472797"
   },
   "history": [
     {
@@ -278,6 +278,15 @@
       "month_name_en": "Shaban",
       "gregorian": "2026-02-02",
       "updated_at": "2026-02-02T00:33:11.433293"
+    },
+    {
+      "day": 16,
+      "month": 8,
+      "year": 1447,
+      "month_name_ar": "شعبان",
+      "month_name_en": "Shaban",
+      "gregorian": "2026-02-04",
+      "updated_at": "2026-02-04T00:45:00.472797"
     }
   ],
   "source": "spa.gov.sa"
