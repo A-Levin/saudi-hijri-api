@@ -1,12 +1,12 @@
 {
   "current": {
-    "day": 21,
+    "day": 22,
     "month": 9,
     "year": 1447,
     "month_name_ar": "رمضان",
     "month_name_en": "Ramadan",
-    "gregorian": "2026-03-10",
-    "updated_at": "2026-03-10T00:42:11.314961"
+    "gregorian": "2026-03-11",
+    "updated_at": "2026-03-11T00:37:27.435681"
   },
   "history": [
     {
@@ -584,6 +584,15 @@
       "month_name_en": "Ramadan",
       "gregorian": "2026-03-10",
       "updated_at": "2026-03-10T00:42:11.314961"
+    },
+    {
+      "day": 22,
+      "month": 9,
+      "year": 1447,
+      "month_name_ar": "رمضان",
+      "month_name_en": "Ramadan",
+      "gregorian": "2026-03-11",
+      "updated_at": "2026-03-11T00:37:27.435681"
     }
   ],
   "source": "spa.gov.sa"
