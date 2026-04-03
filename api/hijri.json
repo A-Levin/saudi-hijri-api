@@ -1,12 +1,12 @@
 {
   "current": {
-    "day": 15,
+    "day": 16,
     "month": 10,
     "year": 1447,
     "month_name_ar": "شوال",
     "month_name_en": "Shawwal",
-    "gregorian": "2026-04-03",
-    "updated_at": "2026-04-03T00:49:29.687104"
+    "gregorian": "2026-04-04",
+    "updated_at": "2026-04-04T00:44:33.751209"
   },
   "history": [
     {
@@ -755,6 +755,15 @@
       "month_name_en": "Shawwal",
       "gregorian": "2026-04-03",
       "updated_at": "2026-04-03T00:49:29.687104"
+    },
+    {
+      "day": 16,
+      "month": 10,
+      "year": 1447,
+      "month_name_ar": "شوال",
+      "month_name_en": "Shawwal",
+      "gregorian": "2026-04-04",
+      "updated_at": "2026-04-04T00:44:33.751209"
     }
   ],
   "source": "spa.gov.sa"
