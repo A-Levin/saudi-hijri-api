@@ -1,12 +1,12 @@
 {
   "current": {
-    "day": 28,
+    "day": 29,
     "month": 11,
     "year": 1447,
     "month_name_ar": "ذو القعدة",
     "month_name_en": "Dhul-Qadah",
-    "gregorian": "2026-05-15",
-    "updated_at": "2026-05-15T01:17:18.117921"
+    "gregorian": "2026-05-16",
+    "updated_at": "2026-05-16T01:06:04.309844"
   },
   "history": [
     {
@@ -1106,6 +1106,15 @@
       "month_name_en": "Dhul-Qadah",
       "gregorian": "2026-05-15",
       "updated_at": "2026-05-15T01:17:18.117921"
+    },
+    {
+      "day": 29,
+      "month": 11,
+      "year": 1447,
+      "month_name_ar": "ذو القعدة",
+      "month_name_en": "Dhul-Qadah",
+      "gregorian": "2026-05-16",
+      "updated_at": "2026-05-16T01:06:04.309844"
     }
   ],
   "source": "spa.gov.sa"
