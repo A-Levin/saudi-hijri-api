@@ -1,12 +1,12 @@
 {
   "current": {
-    "day": 3,
+    "day": 4,
     "month": 12,
     "year": 1447,
     "month_name_ar": "ذو الحجة",
     "month_name_en": "Dhul-Hijjah",
-    "gregorian": "2026-05-20",
-    "updated_at": "2026-05-20T01:21:43.792020"
+    "gregorian": "2026-05-21",
+    "updated_at": "2026-05-21T01:38:59.652706"
   },
   "history": [
     {
@@ -1151,6 +1151,15 @@
       "month_name_en": "Dhul-Hijjah",
       "gregorian": "2026-05-20",
       "updated_at": "2026-05-20T01:21:43.792020"
+    },
+    {
+      "day": 4,
+      "month": 12,
+      "year": 1447,
+      "month_name_ar": "ذو الحجة",
+      "month_name_en": "Dhul-Hijjah",
+      "gregorian": "2026-05-21",
+      "updated_at": "2026-05-21T01:38:59.652706"
     }
   ],
   "source": "spa.gov.sa"
