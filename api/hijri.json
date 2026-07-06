@@ -1,12 +1,12 @@
 {
   "current": {
-    "day": 21,
+    "day": 22,
     "month": 1,
     "year": 1448,
     "month_name_ar": "محرم",
     "month_name_en": "Muharram",
-    "gregorian": "2026-07-06",
-    "updated_at": "2026-07-06T01:08:34.449648"
+    "gregorian": "2026-07-07",
+    "updated_at": "2026-07-07T01:21:29.604497"
   },
   "history": [
     {
@@ -1538,6 +1538,15 @@
       "month_name_en": "Muharram",
       "gregorian": "2026-07-06",
       "updated_at": "2026-07-06T01:08:34.449648"
+    },
+    {
+      "day": 22,
+      "month": 1,
+      "year": 1448,
+      "month_name_ar": "محرم",
+      "month_name_en": "Muharram",
+      "gregorian": "2026-07-07",
+      "updated_at": "2026-07-07T01:21:29.604497"
     }
   ],
   "source": "spa.gov.sa"
