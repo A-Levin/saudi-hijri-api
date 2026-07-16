@@ -1,12 +1,12 @@
 {
   "current": {
-    "day": 2,
+    "day": 3,
     "month": 2,
     "year": 1448,
     "month_name_ar": "صفر",
     "month_name_en": "Safar",
-    "gregorian": "2026-07-16",
-    "updated_at": "2026-07-16T01:09:17.775775"
+    "gregorian": "2026-07-17",
+    "updated_at": "2026-07-17T01:11:03.427075"
   },
   "history": [
     {
@@ -1619,6 +1619,15 @@
       "month_name_en": "Safar",
       "gregorian": "2026-07-16",
       "updated_at": "2026-07-16T01:09:17.775775"
+    },
+    {
+      "day": 3,
+      "month": 2,
+      "year": 1448,
+      "month_name_ar": "صفر",
+      "month_name_en": "Safar",
+      "gregorian": "2026-07-17",
+      "updated_at": "2026-07-17T01:11:03.427075"
     }
   ],
   "source": "spa.gov.sa"
