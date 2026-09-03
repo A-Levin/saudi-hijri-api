@@ -1,12 +1,12 @@
 {
   "current": {
-    "day": 21,
+    "day": 22,
     "month": 3,
     "year": 1448,
     "month_name_ar": "ربيع الأول",
     "month_name_en": "Rabi al-Awwal",
-    "gregorian": "2026-09-03",
-    "updated_at": "2026-09-03T02:15:12.234638"
+    "gregorian": "2026-09-04",
+    "updated_at": "2026-09-04T02:12:45.567395"
   },
   "history": [
     {
@@ -2042,6 +2042,15 @@
       "month_name_en": "Rabi al-Awwal",
       "gregorian": "2026-09-03",
       "updated_at": "2026-09-03T02:15:12.234638"
+    },
+    {
+      "day": 22,
+      "month": 3,
+      "year": 1448,
+      "month_name_ar": "ربيع الأول",
+      "month_name_en": "Rabi al-Awwal",
+      "gregorian": "2026-09-04",
+      "updated_at": "2026-09-04T02:12:45.567395"
     }
   ],
   "source": "spa.gov.sa"
