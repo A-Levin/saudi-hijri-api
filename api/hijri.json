@@ -1,12 +1,12 @@
 {
   "current": {
-    "day": 24,
+    "day": 25,
     "month": 4,
     "year": 1448,
     "month_name_ar": "ربيع الآخر",
     "month_name_en": "Rabi al-Thani",
-    "gregorian": "2026-10-06",
-    "updated_at": "2026-10-06T04:43:18.874391"
+    "gregorian": "2026-10-07",
+    "updated_at": "2026-10-07T03:35:01.202032"
   },
   "history": [
     {
@@ -2321,6 +2321,15 @@
       "month_name_en": "Rabi al-Thani",
       "gregorian": "2026-10-06",
       "updated_at": "2026-10-06T04:43:18.874391"
+    },
+    {
+      "day": 25,
+      "month": 4,
+      "year": 1448,
+      "month_name_ar": "ربيع الآخر",
+      "month_name_en": "Rabi al-Thani",
+      "gregorian": "2026-10-07",
+      "updated_at": "2026-10-07T03:35:01.202032"
     }
   ],
   "source": "spa.gov.sa"
