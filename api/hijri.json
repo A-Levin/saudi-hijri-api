@@ -1,12 +1,12 @@
 {
   "current": {
-    "day": 21,
+    "day": 22,
     "month": 5,
     "year": 1448,
     "month_name_ar": "جمادى الأولى",
     "month_name_en": "Jumada al-Ula",
-    "gregorian": "2026-11-01",
-    "updated_at": "2026-11-01T03:00:33.418258"
+    "gregorian": "2026-11-02",
+    "updated_at": "2026-11-02T03:32:00.088869"
   },
   "history": [
     {
@@ -2546,6 +2546,15 @@
       "month_name_en": "Jumada al-Ula",
       "gregorian": "2026-11-01",
       "updated_at": "2026-11-01T03:00:33.418258"
+    },
+    {
+      "day": 22,
+      "month": 5,
+      "year": 1448,
+      "month_name_ar": "جمادى الأولى",
+      "month_name_en": "Jumada al-Ula",
+      "gregorian": "2026-11-02",
+      "updated_at": "2026-11-02T03:32:00.088869"
     }
   ],
   "source": "spa.gov.sa"
