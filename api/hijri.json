@@ -1,12 +1,12 @@
 {
   "current": {
-    "day": 5,
+    "day": 6,
     "month": 6,
     "year": 1448,
     "month_name_ar": "جمادى الآخرة",
     "month_name_en": "Jumada al-Thani",
-    "gregorian": "2026-11-15",
-    "updated_at": "2026-11-15T03:57:46.425982"
+    "gregorian": "2026-11-16",
+    "updated_at": "2026-11-16T03:55:08.065880"
   },
   "history": [
     {
@@ -2636,6 +2636,15 @@
       "month_name_en": "Jumada al-Thani",
       "gregorian": "2026-11-15",
       "updated_at": "2026-11-15T03:57:46.425982"
+    },
+    {
+      "day": 6,
+      "month": 6,
+      "year": 1448,
+      "month_name_ar": "جمادى الآخرة",
+      "month_name_en": "Jumada al-Thani",
+      "gregorian": "2026-11-16",
+      "updated_at": "2026-11-16T03:55:08.065880"
     }
   ],
   "source": "spa.gov.sa"
